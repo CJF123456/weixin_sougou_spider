@@ -1,0 +1,24 @@
+本系统是基于java开发的项目
+开发环境：jdk1.7 +maven 3.2.3 +myeclipse 10.6
+
+搜狗微信现在是一个比较敏感的公众号入口
+采集的频率一定要控制，不然会非IP
+
+%搜狗微信的申请账号的地方%
+https://account.sogou.com/web/webLogin 
+
+%%%%%
+测试账号：
+weixin_sg_spider/src/main/resources/users.txt
+测试账号和密码用,隔开，放在配置文件中
+
+
+需要修改的地方在
+weixin_sg_spider/src/main/java/com/qizaodian/task/WeixinSpider.java
+
+
+编译后的代码：weixin_sg_spider/target
+
+最后产生的txt文件地址：weixin_sg_spider/target
+
+为了防止请求过于频繁，程序设置了每采集一页数据，要休眠1-3秒不等，希望耐心等待一会就好！
