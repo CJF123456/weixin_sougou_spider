@@ -20,6 +20,7 @@ public class ReaderLine {
 	private static String path;
 	List<String> list = new ArrayList<String>();
 
+	
 	/**
 	 * 获取随机行数
 	 * 
