@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -32,12 +33,10 @@ import org.apache.http.util.EntityUtils;
  * @date: 2016-11-22 下午3:56:53
  */
 public class WeixinFetcher {
-	// 27.202.166.30:80 123.233.153.151:8118
-	// 106.120.78.129:80
-	/* private static HttpHost proxy = new HttpHost("123.233.153.151", 8118); */
+   /* private static HttpHost proxy = new HttpHost("183.141.72.67", 312); */
 	public static RequestConfig requestConfig = RequestConfig.custom()
 			.setSocketTimeout(30000).setConnectTimeout(30000)
-			/* .setProxy(proxy) */
+			/*.setProxy(proxy)*/
 			.build();
 	public static BasicCookieStore cookieStore = new BasicCookieStore();
 

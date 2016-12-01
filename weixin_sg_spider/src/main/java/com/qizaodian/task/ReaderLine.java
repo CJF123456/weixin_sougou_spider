@@ -48,7 +48,6 @@ public class ReaderLine {
 			}
 			accessFile.close();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}

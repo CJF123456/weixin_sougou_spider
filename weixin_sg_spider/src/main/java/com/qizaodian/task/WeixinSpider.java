@@ -35,10 +35,10 @@ public class WeixinSpider {
 	private static String firstUrl = "https://account.sogou.com/web/webLogin";
 	private static String loginUrl = "https://account.sogou.com/web/login";
 	private static String cookieUrl = "https://pb.sogou.com/pv.gif?uigs_productid=ufo&ufoid=passport&rdk=1479803139020&img=pv.gif&b=ff&v=49&o=win6.1&s=1920x1080&l=zh-CN&bi=64&ls=1_1&refer=&page=搜狗通行证&pageUrl=https://account.sogou.com/web/webLogin&productid=passport&ptype=web&pcode=index";
+								   
 	private static String callUrl = "https://account.sogou.com/static/api/jump.htm?status=0&needcaptcha=0&msg=";
 	private static String ssologinUrl = "https://account.sogou.com/";
 	private static WeixinFetcher fetcher = new WeixinFetcher();
-	private String token = null;
 
 	private String path = null;
 	/** 标记位 **/
@@ -175,6 +175,7 @@ public class WeixinSpider {
 	 */
 	public boolean login(String name, String pwd) {
 		HashMap<String, String> params = null;
+		String token = new Token4Sogou().getToken();
 		params = new HashMap<String, String>();
 		params.put("username", name);
 		params.put("password", pwd);
@@ -194,7 +195,6 @@ public class WeixinSpider {
 		String checkUrl = "https://account.sogou.com/web/login/checkNeedCaptcha?username="
 				+ name + "&client_id=1120&t=" + dateTime;
 		fetcher.getHtml(httpClient, checkUrl, fetcher.getCookiesString());
-		token = new Token4Sogou().getToken();
 		sleep();
 		fetcher.post(httpClient, loginUrl, params, "utf-8",
 				fetcher.getCookiesString());
