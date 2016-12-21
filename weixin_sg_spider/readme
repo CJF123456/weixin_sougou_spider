@@ -44,3 +44,7 @@ weixin_sg_spider/src/main/java/com/qizaodian/task/WeixinSpider.java
 	6.1 采集休眠时间
 	6.2 使用随机登录轮换制(简单来说，就是在当前用户登录状态下没有信息返回的时候，再换一个用户登录
 	
+	
+	
+整体的架构如上
+	
