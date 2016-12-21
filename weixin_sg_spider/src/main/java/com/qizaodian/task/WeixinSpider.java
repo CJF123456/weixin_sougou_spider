@@ -30,7 +30,8 @@ import com.qizaodian.login.Token4Sogou;
  * @date: 2016-11-24
  */
 public class WeixinSpider {
-	private static String keyword = "爱情";
+	//需要修改的地方
+	private static String keyword = "小花";
 	private static CloseableHttpClient httpClient = null;
 	private static String firstUrl = "https://account.sogou.com/web/webLogin";
 	private static String loginUrl = "https://account.sogou.com/web/login";
@@ -73,7 +74,6 @@ public class WeixinSpider {
 		if (isLogin) {
 			spiderList(1);
 		}
-
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class WeixinSpider {
 		boolean isLogin = false;
 		while (true) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -154,15 +154,44 @@ public class WeixinSpider {
 		} else {
 			Elements aElements = resultsElements.first().select(
 					"ul.news-list>li");
+			System.out.println(aElements);
 			for (Element element : aElements) {
+				
 				String con = element.select("h3>a").text();
-				System.out.println(con);
-				path = Class.class.getClass().getResource("/").getPath();
-				saveToFile(path, keyword, con);
+				String conrul = element.select("h3>a").attr("href");
+				System.out.println( conrul);
+				
+			    getContentByUrl(conrul);
+			    
+			    String html = fetcher.getHtml(httpClient, conrul,
+						fetcher.getCookiesString());
+				Document document22 = Jsoup.parse(html);
+				if (document22.toString().contains("video_iframe")) {
+					continue;
+				}else{
+					String title=document22.select("h2#activity-name").text().trim();
+					Elements content = document22.select("div.rich_media_content");
+					System.out.println( title +content);
+				}
+				
+				/*path = Class.class.getClass().getResource("/").getPath();
+				saveToFile(path, keyword, con);*/
 			}
 		}
 		return true;
 
+	}
+
+	/** 
+	 * @description:  采集具体信息，如内容 标题 作者 时间 等等 
+	 * @param:        @param conrul    
+	 * @return:       void    
+	 * @throws 
+	 */
+	private void getContentByUrl(String conrul) {
+		
+
+		
 	}
 
 	/**
@@ -220,7 +249,8 @@ public class WeixinSpider {
 	private void sleep() {
 		try {
 			Random rand = new Random();
-			int randNum = rand.nextInt(1) + 2;
+			int randNum = rand.nextInt(3);
+			System.out.println(randNum);
 			Thread.sleep(1000 * randNum);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
